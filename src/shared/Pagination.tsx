@@ -21,7 +21,7 @@ const Pagination: React.FC<PaginationProps> = ({
   const end = Math.min(currentPage * itemsPerPage, totalItems);
 
   return (
-    <div className="flex items-center justify-end gap-5 mt-4 text-sm">
+    <div className="flex items-center justify-end w-full gap-5 mt-4 text-sm">
       <div>
         {start}-{end} of {totalItems} items
       </div>

@@ -17,13 +17,13 @@ const logo = (
 const Header = () => {
   const { user } = useSwiftContext();
   return (
-    <nav className="bg-[#272a4b] flex justify-between px-24 py-5 items-center">
+    <nav className="bg-[#272a4b] flex justify-between px-5 md:px-24 py-5 items-center">
       <p className="flex justify-center m-0 p-0">
         {logo} <span className="text-lg tracking-wider text-white ">WIFT</span>
       </p>
 
       {user && (
-        <Link to="/profile" className="flex items-center gap-5">
+        <Link to="/profile" className="flex items-center gap-2 md:gap-5">
           <div className="w-10 h-10 flex justify-center items-center font-semibold bg-white rounded-full text-center">
             <p>
               {user.name[0][0].toLocaleUpperCase() +

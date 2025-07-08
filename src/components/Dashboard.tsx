@@ -13,7 +13,7 @@ const Dashboard = () => {
   const currentComments = comments.slice(startIndex, startIndex + itemsPerPage);
 
   useEffect(() => {
-    setCurrentPage(1); // Reset page when itemsPerPage changes
+    setCurrentPage(1);
   }, [itemsPerPage]);
   return (
     <main>
@@ -24,42 +24,46 @@ const Dashboard = () => {
           </div>
         ) : (
           <>
-            <table className="table-auto border-collapse border my-10 !rounded-lg border-gray-100">
-              <thead className="">
-                <tr className="bg-[#272a4b] text-white text-left">
-                  <th className="p-2 border border-gray-300">ID</th>
-                  <th className="p-2 border border-gray-300">Post ID</th>
-                  <th className="p-2 border border-gray-300">Name</th>
-                  <th className="p-2 border border-gray-300">Email</th>
-                  <th className="p-2 border border-gray-300">Body</th>
-                </tr>
-              </thead>
-              <tbody>
-                {currentComments?.map((comment) => (
-                  //@ts-ignore
-                  <tr key={comment.id} className="hover:bg-gray-50">
-                    {/* @ts-ignore */}
-                    <td className="p-2 border border-gray-300">{comment.id}</td>
-                    <td className="p-2 border border-gray-300">
-                      {/* @ts-ignore */}
-                      {comment.postId}
-                    </td>
-                    <td className="p-2 border border-gray-300">
-                      {/* @ts-ignore */}
-                      {comment.name}
-                    </td>
-                    <td className="p-2 border border-gray-300">
-                      {/* @ts-ignore */}
-                      {comment.email}
-                    </td>
-                    <td className="p-2 border border-gray-300">
-                      {/* @ts-ignore */}
-                      {comment.body}
-                    </td>
+            <div className="w-full overflow-x-auto">
+              <table className="min-w-full overflow-x-autotable-auto border-collapse border my-10 !rounded-lg border-gray-100">
+                <thead className="">
+                  <tr className="bg-[#272a4b] text-white text-left">
+                    <th className="p-2 border border-gray-300">ID</th>
+                    <th className="p-2 border border-gray-300 w-24">Post ID</th>
+                    <th className="p-2 border border-gray-300">Name</th>
+                    <th className="p-2 border border-gray-300">Email</th>
+                    <th className="p-2 border border-gray-300">Body</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {currentComments?.map((comment) => (
+                    //@ts-ignore
+                    <tr key={comment.id} className="hover:bg-gray-50">
+                      <td className="p-2 border border-gray-300">
+                        {/* @ts-ignore */}
+                        {comment.id}
+                      </td>
+                      <td className="p-2 border border-gray-300">
+                        {/* @ts-ignore */}
+                        {comment.postId}
+                      </td>
+                      <td className="p-2 border border-gray-300">
+                        {/* @ts-ignore */}
+                        {comment.name}
+                      </td>
+                      <td className="p-2 border border-gray-300">
+                        {/* @ts-ignore */}
+                        {comment.email}
+                      </td>
+                      <td className="p-2 border border-gray-300">
+                        {/* @ts-ignore */}
+                        {comment.body}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
             <Pagination
               currentPage={currentPage}
               totalItems={totalItems}
