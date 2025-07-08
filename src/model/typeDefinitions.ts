@@ -5,3 +5,11 @@ export interface User {
   address: string;
   phone: string;
 }
+
+export type Comment = {
+  postId: number;
+  id: number;
+  name: string;
+  email: string;
+  body: string;
+};

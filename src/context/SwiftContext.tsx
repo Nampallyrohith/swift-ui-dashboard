@@ -1,11 +1,15 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useState } from "react";
 import { useFetchData } from "../hooks/apiCall";
-import type { User } from "../model/typeDefinitions";
+import type { Comment, User } from "../model/typeDefinitions";
 
 type SwiftContextType = {
   user: User | null;
   userInfoLoader: boolean;
+  commentsLoader: boolean;
+  comments: Comment[];
 };
 
 const SwiftContext = createContext<SwiftContextType | null>(null);
@@ -16,6 +20,7 @@ export const SwiftContextProvider = ({
   children: React.ReactNode;
 }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [comments, setComments] = useState<Comment[]>([]);
 
   //   API's
   const {
@@ -24,8 +29,15 @@ export const SwiftContextProvider = ({
     // data: userInfoResult,
   } = useFetchData<User[]>();
 
+  const {
+    call: fetchCommentsAPICaller,
+    loading: commentsLoader,
+    // data: commentsResults,
+  } = useFetchData<Comment[]>();
+
   useEffect(() => {
     getUserInfo();
+    getComments();
   }, []);
   console.log(user);
   const getUserInfo = async () => {
@@ -36,6 +48,21 @@ export const SwiftContextProvider = ({
         return;
       }
       setUser(response.data[0]);
+    } catch (err: any) {
+      const errorMessage =
+        err instanceof Error ? err.message : "An unknown error occurred";
+      alert(errorMessage);
+    }
+  };
+
+  const getComments = async () => {
+    try {
+      const response = await fetchCommentsAPICaller(`comments`);
+      if (!response.ok) {
+        alert(response.error);
+        return;
+      }
+      setComments(response.data);
       console.log(response);
     } catch (err: any) {
       const errorMessage =
@@ -49,6 +76,8 @@ export const SwiftContextProvider = ({
       value={{
         user,
         userInfoLoader,
+        commentsLoader,
+        comments,
       }}
     >
       {children}
