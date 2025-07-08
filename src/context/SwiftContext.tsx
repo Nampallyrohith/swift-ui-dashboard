@@ -1,7 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useState } from "react";
 import { useFetchData } from "../hooks/apiCall";
-import type { User } from "../model/typeDefinitions";
+import type { Comment, User } from "../model/typeDefinitions";
 
 type SwiftContextType = {
   user: User | null;
