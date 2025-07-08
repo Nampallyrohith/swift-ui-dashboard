@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useSwiftContext } from "../context/SwiftContext";
 
 const logo = (
@@ -22,7 +23,7 @@ const Header = () => {
       </p>
 
       {user && (
-        <div className="flex items-center gap-5">
+        <Link to="/profile" className="flex items-center gap-5">
           <div className="w-10 h-10 flex justify-center items-center font-semibold bg-white rounded-full text-center">
             <p>
               {user.name[0][0].toLocaleUpperCase() +
@@ -30,7 +31,7 @@ const Header = () => {
             </p>
           </div>
           <p className="text-white tracking-wide font-semibold">{user.name}</p>
-        </div>
+        </Link>
       )}
     </nav>
   );
