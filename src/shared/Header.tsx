@@ -16,7 +16,7 @@ const logo = (
 const Header = () => {
   const { user } = useSwiftContext();
   return (
-    <nav className="bg-[#272a4b] flex justify-between px-20 py-5 items-center">
+    <nav className="bg-[#272a4b] flex justify-between px-24 py-5 items-center">
       <p className="flex justify-center m-0 p-0">
         {logo} <span className="text-lg tracking-wider text-white ">WIFT</span>
       </p>
